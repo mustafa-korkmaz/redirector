@@ -4,11 +4,13 @@
     using System.Text;
     static class ResultsExtensions
     {
-        public static IResult Html(this IResultExtensions resultExtensions, string loadFromFile)
+        private const string Path = "Pages";
+
+        public static IResult Html(this IResultExtensions resultExtensions, string htmlFileName)
         {
             ArgumentNullException.ThrowIfNull(resultExtensions);
 
-            var content = File.ReadAllText(loadFromFile);
+            var content = File.ReadAllText($"{Path}/{htmlFileName}");
 
             return new HtmlResult(content);
         }
